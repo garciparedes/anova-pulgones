@@ -27,7 +27,7 @@ data pulgones;
 ;
 run;
 
-proc print data=pulgones (obs=5) n;
+proc print data=pulgones (obs=5);
 run;
 
 proc sgplot data=pulgones;
