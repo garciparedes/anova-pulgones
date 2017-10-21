@@ -25,3 +25,11 @@ data pulgones;
 	25 1 0 0 0 0 0 0 0 5 0 2 0 0 0 2 0 0 0 4 0 0 0 0 2 0 0 0 0 2 1 0 0 1 7
 	0 0 0 4 1 5 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ;
+run;
+
+proc print data=pulgones (obs=5) n;
+run;
+
+proc sgplot data=pulgones;
+	scatter x=repet y=recuento / group= semana;
+run;
