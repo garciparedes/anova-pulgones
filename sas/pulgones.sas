@@ -6,10 +6,11 @@
  * Teacher: Lourdes Barba Escribá
  * Author: Sergio García Prado (garciparedes.me)
  * Name: Práctica Pulgones
-
+ *
  */
 data pulgones;
 	do semana=1 to 6;
+
 		do repet=1 to 40;
 			input recuento @@;
 			output;
@@ -30,6 +31,80 @@ run;
 proc print data=pulgones (obs=5);
 run;
 
+/**
+ *
+ * ¿Es adecuado utilizar un modelo de un factor para ello? Haz un análisis
+ * descriptivo de los datos por semanas y valora las hipótesis que se
+ * asumen en el modelo.
+ *
+ */
 proc sgplot data=pulgones;
-	scatter x=repet y=recuento / group= semana;
+	vbox recuento / category=semana;
+run;
+
+proc sgplot data=pulgones;
+	scatter x=semana y=recuento / group=semana;
+run;
+
+proc univariate data=pulgones plot;
+	by semana;
+	var recuento;
+	qqplot recuento / normal;
+run;
+
+/**
+ *
+ * Realiza el contraste de igualdad de medias y analiza los residuos. ¿Qué conclusiones sacas?
+ *
+ */
+proc glm data=pulgones PLOTS(UNPACK)=DIAGNOSTICS;
+	class semana;
+	model recuento=semana;
+	run;
+
+	/**
+	 *
+	 * Realiza el test de Levene. ¿Te sorprende el resultado?
+	 *
+	 */
+proc glm data=pulgones;
+	class semana;
+	model recuento=semana;
+	means semana / hovtest=levene;
+	run;
+
+	/**
+	 *
+	 * Transforma la respuesta mediante log(recuento+1) y repite el apartado 2.
+	 * ¿Qué cambios observas?
+	 *
+	 */
+data pulgones_log;
+	set pulgones;
+	recuento=log(recuento + 1);
+run;
+
+proc sgplot data=pulgones;
+	vbox recuento / category=semana;
+run;
+
+proc univariate data=pulgones_log plot;
+	by semana;
+	var recuento;
+	qqplot recuento / normal;
+run;
+
+proc sgplot data=pulgones_log;
+	scatter x=semana y=recuento / group=semana;
+run;
+
+/**
+ *
+ * Realiza el test de kruskal-Wallis sobre los datos originales para contrastar
+ * la igualdad de medias.
+ *
+ */
+proc npar1way data=pulgones wilcoxon;
+	class semana;
+	var recuento;
 run;
