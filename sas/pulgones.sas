@@ -65,6 +65,7 @@ proc glm data=pulgones PLOTS(UNPACK)=DIAGNOSTICS;
 	model recuento=semana;
 run;
 
+
 /**
  *
  * 3)	Realiza el test de Levene. ¿Te sorprende el resultado?
@@ -87,18 +88,15 @@ data pulgones_log;
 	recuento=log(recuento + 1);
 run;
 
-proc sgplot data=pulgones;
-	vbox recuento / category=semana;
-run;
-
-proc univariate data=pulgones_log plot;
-	by semana;
-	var recuento;
-	qqplot recuento / normal;
-run;
-
 proc sgplot data=pulgones_log;
-	scatter x=semana y=recuento / group=semana;
+	vbox recuento /  group=semana;
+run;
+
+
+proc glm data=pulgones_log PLOTS(UNPACK)=DIAGNOSTICS;
+	class semana;
+	model recuento=semana;
+	means semana / hovtest=levene bon;
 run;
 
 /**
