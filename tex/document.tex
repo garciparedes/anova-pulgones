@@ -27,7 +27,7 @@
 
     \begin{figure}[h]
       \centering
-      \includegraphics[width=0.3\textwidth]{pulgones-print}
+      \includegraphics[width=.4\textwidth]{pulgones-print}
       \caption{Visión preliminar del conjunto de datos \texttt{pulgones}}
       \label{img:pulgones-print}
     \end{figure}
@@ -42,17 +42,104 @@
     \label{sec:e1}
 
       \paragraph{}
-      Para poder responder a la pregunta sobre si es adecuado utilizar un modelo de un factor para la comparación del número de pulgones por planta entre las distintas semananas, es necesario plantearse cómo han sido recogidas las observaciones, así como estudiar si la distribución entre las distintas semanas sigue una serie temporal.
+      Para poder responder a la pregunta sobre si es adecuado utilizar un modelo de un factor para la comparación del número de pulgones por planta entre las distintas semananas, es necesario plantearse cómo han sido recogidas las observaciones, así como estudiar la distribución de la variable respuesta (\texttt{recuento} en este caso)
 
       \paragraph{}
-      En el primer caso, se presupone que las $40$ observaciones referidas a cada semana han sido elegidas siguiendo algún procedimiento aleatorio. Por tanto, supondremos como válidas las observaciones para la realización del análisis de un factor.
+      En el primer caso, se presupone que las $40$ observaciones referidas a cada semana han sido elegidas siguiendo algún procedimiento aleatorio. Por tanto, asumiremos como válida la hipótesis de independencia de las observaciones para la realización del análisis de un factor.
 
       \paragraph{}
-      En el caso de la hipótesis de que el conjunto de datos sigue un modelo de serie temporal, debe ser rechazada debido a que el contexto sobre el cual se describe el conjunto de datos no especifica que se trate distribución temporal. Esto se debe a que se indica que las plantas sobre las que se realizan las observaciones son seleccionadas en cada semana, es decir, no se sigue la evolución de las plantas durante las semanas. Además, tampoco se indica que el identificador de las semanas se refiera al orden temporal. Por tanto, debido a que no se han indicado dichas afirmaciones sobre el carácter del conjunto de datos (y el objetivo de este trabajo no es el de realizar un estudio desde el punto de vista de serie temporal del conjunto de datos), se presupondrá que las semanas se refieren a distintos factores del número de pulgones.
+      En cuanto a la hipótesis de normalidad, es decir, el estudio acerca de que los valores de la variable recuento siguen  una distribución aproximadamente normal, se ha realizado un estudio descriptivo sobre los mismos. Para dicha tarea se ha utilizado el fragmento de código incluido en la figura \ref{code:sas_3}. A partir de esta sentencia se han obtenido los resultados mostrados en la tabla de las figuras \ref{}, así como los \emph{Histogramas} incluidos en las figuras \ref{fig:histogram-plot-1-2}, \ref{fig:histogram-plot-3-4} y \ref{fig:histogram-plot-5-6} y los \emph{Gráficos de Normalidad} incluidos en las figuras \ref{fig:normal-plot-1-2}, \ref{fig:normal-plot-3-4} y \ref{fig:normal-plot-5-6}.
+
+      \paragraph{}
+      Tras el análisis de los mismos podemos empezar a sospechar acerca de una cierta falta de normalidad en los datos, concretamente en los referidos a las de la categoria \texttt{semana} $2$ y $3$. Esto se ve reflejado en los distintos valores de los tests de normalidad, así como en la apariencia de los histogramas y la marcada desviación respecto de la recta de la distirbución normal en los diagramas de \emph{cuantil-cuantil} respecto de la normal
+
+      \begin{figure}
+        \centering
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{normality-1}
+          \caption{}
+          \label{fig:normality-1}
+        \end{minipage}
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{normality-2}
+          \caption{}
+          \label{fig:normality-2}
+        \end{minipage}
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{normality-3}
+          \caption{}
+          \label{fig:normality-3}
+        \end{minipage}
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{normality-4}
+          \caption{}
+          \label{fig:normality-4}
+        \end{minipage}
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{normality-5}
+          \caption{}
+          \label{fig:normality-5}
+        \end{minipage}
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{normality-6}
+          \caption{}
+          \label{fig:normality-6}
+        \end{minipage}
+      \end{figure}
+
+      \begin{figure}
+        \centering
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{histogram-plot-1-2}
+          \caption{Histograma: Semanas 1 y 2}
+          \label{fig:histogram-plot-1-2}
+        \end{minipage}
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{histogram-plot-3-4}
+          \caption{Histograma: Semanas 3 y 4}
+          \label{fig:histogram-plot-3-4}
+        \end{minipage}
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{histogram-plot-5-6}
+          \caption{Histograma: Semanas 5 y 6}
+          \label{fig:histogram-plot-5-6}
+        \end{minipage}
+      \end{figure}
 
       \paragraph{}
       [TODO ]
 
+
+      \begin{figure}
+        \centering
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{normal-plot-1-2}
+          \caption{Gráfico de Normalidad: Semanas 1 y 2}
+          \label{fig:normal-plot-1-2}
+        \end{minipage}
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{normal-plot-3-4}
+          \caption{Gráfico de Normalidad: Semanas 3 y 4}
+          \label{fig:normal-plot-3-4}
+        \end{minipage}
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{normal-plot-5-6}
+          \caption{Gráfico de Normalidad: Semanas 5 y 6}
+          \label{fig:normal-plot-5-6}
+        \end{minipage}
+      \end{figure}
 
     \subsection{Realiza el contraste de igualdad de medias y analiza los residuos. ?`Qué conclusiones sacas?}
     \label{sec:e2}
@@ -105,7 +192,7 @@ data pulgones;
 ;
 run;
       \end{minted}
-      \caption{\emph{Código SAS:} Lectura del conjunto de datos}
+      \caption{\emph{Código SAS:} Lectura del conjunto de datos.}
       \label{code:sas_1}
     \end{figure}
 
@@ -116,8 +203,33 @@ run;
 proc print data=pulgones (obs=5) n;
 run;
       \end{minted}
-      \caption{\emph{Código SAS:} Vista preliminar del conjunto de datos}
+      \caption{\emph{Código SAS:} Vista preliminar del conjunto de datos.}
       \label{code:sas_2}
+    \end{figure}
+
+    \begin{figure}
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
+proc univariate data=pulgones;
+   class semana;
+   var recuento;
+   probplot recuento / normal
+                     (mu=est sigma=est color=blue w=1);
+run;
+      \end{minted}
+      \caption{\emph{Código SAS:} Estudio Descriptivo de la variable \texttt{recuento} particionada por \texttt{semana}.}
+      \label{code:sas_3}
+    \end{figure}
+
+    \begin{figure}
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
+proc sgplot data=pulgones;
+  vbox recuento /  group=semana;
+run;
+      \end{minted}
+      \caption{\emph{Código SAS:} \emph{Box-Plot} de la variable \texttt{recuento} particionada por \texttt{semana}.}
+      \label{code:sas_4}
     \end{figure}
 
     %-----------------------------

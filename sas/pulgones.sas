@@ -31,6 +31,7 @@ run;
 proc print data=pulgones (obs=5);
 run;
 
+
 /**
  *
  * ¿Es adecuado utilizar un modelo de un factor para ello? Haz un análisis
@@ -38,19 +39,19 @@ run;
  * asumen en el modelo.
  *
  */
-proc sgplot data=pulgones;
-	vbox recuento / category=semana;
+proc univariate data=pulgones;
+   class semana;
+   var recuento;
+   histogram recuento / normal;
+   qqplot recuento / normal
+                     (mu=est sigma=est color=blue w=1);
 run;
 
 proc sgplot data=pulgones;
-	scatter x=semana y=recuento / group=semana;
+	vbox recuento /  group=semana;
 run;
 
-proc univariate data=pulgones plot;
-	by semana;
-	var recuento;
-	qqplot recuento / normal;
-run;
+
 
 /**
  *
@@ -60,25 +61,25 @@ run;
 proc glm data=pulgones PLOTS(UNPACK)=DIAGNOSTICS;
 	class semana;
 	model recuento=semana;
-	run;
+run;
 
-	/**
-	 *
-	 * Realiza el test de Levene. ¿Te sorprende el resultado?
-	 *
-	 */
+/**
+ *
+ * Realiza el test de Levene. ¿Te sorprende el resultado?
+ *
+ */
 proc glm data=pulgones;
 	class semana;
 	model recuento=semana;
 	means semana / hovtest=levene;
 	run;
 
-	/**
-	 *
-	 * Transforma la respuesta mediante log(recuento+1) y repite el apartado 2.
-	 * ¿Qué cambios observas?
-	 *
-	 */
+/**
+ *
+ * Transforma la respuesta mediante log(recuento+1) y repite el apartado 2.
+ * ¿Qué cambios observas?
+ *
+ */
 data pulgones_log;
 	set pulgones;
 	recuento=log(recuento + 1);
