@@ -34,9 +34,9 @@ run;
 
 /**
  *
- * ¿Es adecuado utilizar un modelo de un factor para ello? Haz un análisis
- * descriptivo de los datos por semanas y valora las hipótesis que se
- * asumen en el modelo.
+ * 1) ¿Es adecuado utilizar un modelo de un factor para ello? Haz un análisis
+ * 		descriptivo de los datos por semanas y valora las hipótesis que se
+ *		asumen en el modelo.
  *
  */
 proc univariate data=pulgones;
@@ -55,9 +55,11 @@ run;
 
 /**
  *
- * Realiza el contraste de igualdad de medias y analiza los residuos. ¿Qué conclusiones sacas?
+ * 2)	Realiza el contraste de igualdad de medias y analiza los residuos. ¿Qué 
+ * 		conclusiones sacas?
  *
  */
+
 proc glm data=pulgones PLOTS(UNPACK)=DIAGNOSTICS;
 	class semana;
 	model recuento=semana;
@@ -65,19 +67,19 @@ run;
 
 /**
  *
- * Realiza el test de Levene. ¿Te sorprende el resultado?
+ * 3)	Realiza el test de Levene. ¿Te sorprende el resultado?
  *
  */
 proc glm data=pulgones;
 	class semana;
 	model recuento=semana;
 	means semana / hovtest=levene;
-	run;
+run;
 
 /**
  *
- * Transforma la respuesta mediante log(recuento+1) y repite el apartado 2.
- * ¿Qué cambios observas?
+ * 4)	Transforma la respuesta mediante log(recuento+1) y repite el apartado 2.
+ * 		¿Qué cambios observas?
  *
  */
 data pulgones_log;
@@ -101,8 +103,8 @@ run;
 
 /**
  *
- * Realiza el test de kruskal-Wallis sobre los datos originales para contrastar
- * la igualdad de medias.
+ * 5)	Realiza el test de kruskal-Wallis sobre los datos originales para 
+ * 		contrastar la igualdad de medias.
  *
  */
 proc npar1way data=pulgones wilcoxon;
