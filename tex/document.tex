@@ -168,7 +168,7 @@
       \begin{figure}[!h]
         \centering
         \includegraphics[width=.4\textwidth]{anova-recuento}
-        \caption{Gráfico de Normalidad: Residuos del contraste de hipótesis de igualdad de medias}
+        \caption{Resultados contraste de hipótesis de igualdad de medias}
         \label{img:anova-recuento}
       \end{figure}
 
@@ -246,8 +246,79 @@
       \paragraph{}
       A la vista de dicho \emph{box-plot} se puede intuir que existen tres grupos de medias. Para confirmar dicha hipótesis se realizará el contraste de hipótesis de igualdad de medias, además del de \emph{Levene} para confirmar que se las varianzas ahora si son iguales. Puesto que tenemos que rechazar la hipótesis de igualdad de medias, se ha realizado un test de \emph{Tukey} para conocer qué grupos son diferentes entre si. Todo esto se ha realizado a partir del fragmento de código de la figura \ref{code:sas_8}.
 
-    \subsection{Realiza el test de \emph{kruskal-Wallis} sobre los datos originales para contrastar la igualdad de medias}
+      \begin{figure}[!h]
+        \centering
+        \includegraphics[width=.6\textwidth]{anova-recuento-log}
+        \caption{Resultados contraste de hipótesis de igualdad de medias de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+        \label{img:anova-recuento-log}
+      \end{figure}
+
+      \paragraph{}
+      [TODO ]
+
+      \begin{figure}[!h]
+        \centering
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{residuals-log}
+          \caption{Scatter Plot: Residuos del contraste de hipótesis de igualdad de medias de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+          \label{fig:scatter-plot-residuals-log}
+        \end{minipage}
+        \begin{minipage}{.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{studentized-residuals-log}
+          \caption{Scatter Plot: Residuos Studentizados del contraste de hipótesis de igualdad de medias de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+          \label{fig:scatter-plot-studentized-residuals-log}
+        \end{minipage}
+      \end{figure}
+
+      \paragraph{}
+      [TODO ]
+
+      \begin{figure}[!h]
+        \centering
+        \includegraphics[width=.7\textwidth]{normal-plot-residuals-log}
+        \caption{Gráfico de Normalidad: Residuos del contraste de hipótesis de igualdad de medias de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+        \label{img:normal-plot-residuals-log}
+      \end{figure}
+
+      \paragraph{}
+      [TODO ]
+
+      \begin{figure}[!h]
+        \centering
+        \includegraphics[width=.4\textwidth]{levene-recuento-log.png}
+        \caption{Resultados del test de Levene de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+        \label{img:levene-test-log}
+      \end{figure}
+
+      \paragraph{}
+      [TODO ]
+
+      \begin{figure}[!h]
+        \centering
+        \includegraphics[width=.7\textwidth]{tukey-recuento-log}
+        \caption{Resultados test de \emph{Tukey} de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+        \label{img:tukey-recuento-log}
+      \end{figure}
+
+      \paragraph{}
+      [TODO ]
+
+    \subsection{Realiza el test de \emph{Kruskal-Wallis} sobre los datos originales para contrastar la igualdad de medias}
     \label{sec:e5}
+
+
+      \paragraph{}
+      [TODO ]
+
+      \begin{figure}[!h]
+        \centering
+        \includegraphics[width=.5\textwidth]{wilcoxon-results}
+        \caption{Resultados test de \emph{Kruskal-Wallis} la variable \texttt{recuento} particionada por \texttt{semana}}
+        \label{img:anova-recuento-log}
+      \end{figure}
+
       \paragraph{}
       [TODO ]
 
@@ -354,7 +425,7 @@ proc sgplot data=pulgones_log;
   vbox recuento /  group=semana;
 run;
       \end{minted}
-      \caption{\emph{Código SAS:} Test de \emph{Levene}}
+      \caption{\emph{Código SAS:} Transformación del conjunto de datos mediante $log(recuento + 1)$.}
       \label{code:sas_7}
     \end{figure}
 
@@ -367,17 +438,29 @@ proc glm data=pulgones_log PLOTS(UNPACK)=DIAGNOSTICS;
   means semana / hovtest=levene tukey;
 run;
       \end{minted}
-      \caption{\emph{Código SAS:} Test de \emph{Levene}}
+      \caption{\emph{Código SAS:} Test de igualdad de medias sobre datos transformados.}
       \label{code:sas_8}
     \end{figure}
 
-    %-----------------------------
-    %	Bibliographic references
-    %-----------------------------
+    \begin{figure}[!h]
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
+proc npar1way data=pulgones wilcoxon;
+  class semana;
+  var recuento;
+run;
+      \end{minted}
+      \caption{\emph{Código SAS:} Test de \emph{Kruskal-Wallis}.}
+      \label{code:sas_8}
+    \end{figure}
 
-    \nocite{rano2017}
+  %-----------------------------
+  %	Bibliographic references
+  %-----------------------------
 
-    \bibliographystyle{acm}
-    \bibliography{bib}
+  \nocite{rano2017}
+
+  \bibliographystyle{acm}
+  \bibliography{bib}
 
 \end{document}
