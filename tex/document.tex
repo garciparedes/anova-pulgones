@@ -239,78 +239,77 @@
       \begin{figure}
         \centering
         \includegraphics[width=.7\textwidth]{box-plot-log}
-        \caption{\emph{Box-plot}: de la variable $log(\texttt{recuento} + 1)$ clasificada por \texttt{semana}}
+        \caption{\emph{Box-plot}: de la variable transformada.}
         \label{img:box-plot-log}
       \end{figure}
 
       \paragraph{}
-      A la vista de dicho \emph{box-plot} se puede intuir que existen tres grupos de medias. Para confirmar dicha hipótesis se realizará el contraste de hipótesis de igualdad de medias, además del de \emph{Levene} para confirmar que se las varianzas ahora si son iguales. Puesto que tenemos que rechazar la hipótesis de igualdad de medias, se ha realizado un test de \emph{Tukey} para conocer qué grupos son diferentes entre si. Todo esto se ha realizado a partir del fragmento de código de la figura \ref{code:sas_8}.
+      Una vez transformada la variable, el siguiente paso a realizar es realizar el test de igualdad de medias sobre los datos transformados siguiendo la misma metodología que en la sección \ref{sec:e2}. En este caso, además del test de igualdad de medias, se ha realizado el test de \emph{Levene} para comprobar si la transformación ha hecho que las medias de los distintos grupos sean más semejante. Por último, dado que esta hipótesis no ha podido rechazarse, como se verá a continuación, se ha realizado un test de \emph{Tukey} para estudiar qué grupos son diferentes entre sí. Se ha preferido este test puesto que en este caso era posible su utilización (todos los grupos tienen el mismo número de observaciones) además de ser un método potente desde el punto de vista de las diferencias que es capaz de detectar. Estas tareas se han realizado utilizando el bloque de código incluido en la figura \ref{code:sas_9}.
 
       \begin{figure}[!h]
         \centering
         \includegraphics[width=.6\textwidth]{anova-recuento-log}
-        \caption{Resultados contraste de hipótesis de igualdad de medias de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+        \caption{Resultados contraste de hipótesis de igualdad de medias de la variable transformada.}
         \label{img:anova-recuento-log}
       \end{figure}
 
       \paragraph{}
-      [TODO ]
+      Los resultados del test de igualdad de medias conjunto sobre la variable transformada se han incluido en la figura \ref{img:anova-recuento-log}. Tal y como se puede apreciar, en este caso también se rechaza la hipótesis de igualdad de medias debido a que el \emph{p-valor} es muy reducido.
 
       \begin{figure}[!h]
         \centering
         \begin{minipage}{.49\textwidth}
           \centering
           \includegraphics[width=\linewidth]{residuals-log}
-          \caption{Scatter Plot: Residuos del contraste de hipótesis de igualdad de medias de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+          \caption{Scatter Plot: Residuos del contraste de hipótesis de igualdad de medias de la variable transformada.}
           \label{fig:scatter-plot-residuals-log}
         \end{minipage}
         \begin{minipage}{.49\textwidth}
           \centering
           \includegraphics[width=\linewidth]{studentized-residuals-log}
-          \caption{Scatter Plot: Residuos Studentizados del contraste de hipótesis de igualdad de medias de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+          \caption{Scatter Plot: Residuos Studentizados del contraste de hipótesis de igualdad de medias de la variable transformada.}
           \label{fig:scatter-plot-studentized-residuals-log}
         \end{minipage}
       \end{figure}
 
       \paragraph{}
-      [TODO ]
+      Sin embargo, en este caso debemos tomar los resultados con un mayor grado de seguridad, ya que tal y como se puede apreciar en los gráficos de residuos y residuos studentizados de las figuras \ref{fig:scatter-plot-residuals-log} y \ref{fig:scatter-plot-studentized-residuals-log}, en este caso estos siguen una distribución más uniforme. A pesar de no estar distribuidos de manera uniforme, se puede apreciar una clara corrección con respecto de los valores sin transformar.
 
       \begin{figure}[!h]
         \centering
         \includegraphics[width=.7\textwidth]{normal-plot-residuals-log}
-        \caption{Gráfico de Normalidad: Residuos del contraste de hipótesis de igualdad de medias de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+        \caption{Gráfico de Normalidad: Residuos del contraste de hipótesis de igualdad de medias de la variable transformada.}
         \label{img:normal-plot-residuals-log}
       \end{figure}
 
       \paragraph{}
-      [TODO ]
+      Esto también se ve reflejado en el gráfico de normalidad de los errores, el cual se muestra en la figura \ref{img:normal-plot-residuals-log}. En este caso ocurre lo mismo que en el caso de los gráficos de residuos: a pesar de que la corrección de normalidad no es ideal, esta diferencia se ve corregida en gran medida. Estos resultados incitan a pensar que ya se puede realizar interpretaciones con un mayor grado de seguridad. Sin embargo, para estar más seguros se ha realizado un test de \emph{Levene}.
 
       \begin{figure}[!h]
         \centering
         \includegraphics[width=.4\textwidth]{levene-recuento-log.png}
-        \caption{Resultados del test de Levene de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+        \caption{Resultados del test de Levene de la variable transformada.}
         \label{img:levene-test-log}
       \end{figure}
 
       \paragraph{}
-      [TODO ]
+      Tras la realización del test de \emph{Levene} se puede comprobar que ahora la hipótesis de igualdad de medias toma un valor marcadamente mayor que en el caso de los datos sin transformar. A pesar de que este no sea muy elevado, nos da buenos indicios acerca de la existencia de normalidad. Los resultados del test se incluyen en la figura \ref{img:levene-test-log}.
 
       \begin{figure}[!h]
         \centering
         \includegraphics[width=.7\textwidth]{tukey-recuento-log}
-        \caption{Resultados test de \emph{Tukey} de la variable $log(\texttt{recuento}+1)$ particionada por \texttt{semana}}
+        \caption{Resultados test de \emph{Tukey} de la variable transformada.}
         \label{img:tukey-recuento-log}
       \end{figure}
 
       \paragraph{}
-      [TODO ]
+      Por último, se ha realizado un test de \emph{Tukey} para conocer qué grupos de medias son diferentes respecto del resto. Tras realizar dicho experimento se han obtenido los resultados de la figura \ref{img:tukey-recuento-log}, que indican que se puede afirmar con un grado de confianza del $95\%$ que existen tres grupos de medias, formados por las semanas $\{1,4\}$, $\{2,3\}$ y $\{5,6\}$. Esta idea ya se podía apreciar a partir del \emph{box-plot}, sin embargo, ahora ha sido confirmada de manera analítica.
 
     \subsection{Realiza el test de \emph{Kruskal-Wallis} sobre los datos originales para contrastar la igualdad de medias}
     \label{sec:e5}
 
-
       \paragraph{}
-      [TODO ]
+      En esta sección se realiza un test no paramétrico de igualdad de medias sobre el conjunto de datos originales. Los tests no paramétricos se basan en el estudio de la distribución sin el apoyo en parámetros de distribuciones adicionales. En este caso el test utilizado es el de \emph{Kruskal-Wallis}. Para ello, se ha utilizado el bloque de código incluido en la figura \ref{code:sas_9}.
 
       \begin{figure}[!h]
         \centering
@@ -320,7 +319,7 @@
       \end{figure}
 
       \paragraph{}
-      [TODO ]
+      Los resultados obtenidos se han incluido en la figura \ref{img:anova-recuento-log}. A partir de estos se llega a la misma conclusión que se hacía anteriormente: la hipótesis de igualdad de medias debe ser rechazada.
 
   \section{Código fuente}
   \label{sec:code}
@@ -451,7 +450,7 @@ proc npar1way data=pulgones wilcoxon;
 run;
       \end{minted}
       \caption{\emph{Código SAS:} Test de \emph{Kruskal-Wallis}.}
-      \label{code:sas_8}
+      \label{code:sas_9}
     \end{figure}
 
   %-----------------------------
