@@ -96,7 +96,7 @@ run;
 proc glm data=pulgones_log PLOTS(UNPACK)=DIAGNOSTICS;
 	class semana;
 	model recuento=semana;
-	means semana / hovtest=levene bon;
+	means semana / hovtest=levene tukey;
 run;
 
 /**
